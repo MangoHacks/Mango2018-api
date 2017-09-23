@@ -4,7 +4,7 @@ let router = express.Router();
 let User = require('../models/user.js')
 
 router.get ('/', ((req,res) => {
-    res.render('index');
+    res.render('sponsordashboard');
 }));
 
 router.get('/users', (req, res) => {

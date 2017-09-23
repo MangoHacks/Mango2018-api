@@ -14,6 +14,8 @@ let db = mongoose.connection;
 //routes
 let routes = require('./routes/index');
 let form = require('./routes/form');
+let adminDashboard = require('./routes/adminDashboard');
+let sponsorDashboard = require('./routes/sponsorDashboard');
 
 //middleware
 app.use(bodyParser.json());
@@ -49,7 +51,8 @@ app.use(express.static('public/img'));
 //routes
 app.use('/', routes);
 app.use('/users', form);
-
+app.use('/admindashboard', adminDashboard);
+app.use('/sponsordashboard', sponsorDashboard);
 //port
 app.listen(3000);
 console.log('listening on port 3000');
