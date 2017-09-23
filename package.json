@@ -1,0 +1,19 @@
+{
+  "name": "mango2018-api",
+  "version": "1.0.0",
+  "description": "API for mango site and app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Castaneda",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "express-validator": "^4.1.1",
+    "mongoose": "^4.11.11",
+    "nodemon": "^1.12.1"
+  }
+}
