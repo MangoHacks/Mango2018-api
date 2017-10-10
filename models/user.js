@@ -1,11 +1,7 @@
 let mongoose = require('mongoose');
 
 let userSchema = mongoose.Schema({
-    firstName:{
-        type:String,
-        require:true
-    },
-    lastName:{
+    name:{
         type:String,
         require:true
     },
@@ -15,12 +11,27 @@ let userSchema = mongoose.Schema({
     },
     major:{
         type:String,
+        require:true
+    },
+    school:{
+        type:String,
+        require:true
     },
     diet:{
         type:String,
+        default:''
     },
-    gender:{
+    resume:{
         type:String,
+        default:''
+    },
+    travel:{
+        type:String,
+        default:''
+    },
+    size:{
+        type:String,
+        require:true
     },
 });
 
@@ -34,3 +45,28 @@ module.exports.addUser = ((user, callback) => {
     User.create(user, callback);
 })
 
+module.exports.updateUser = (name, email, options, callback) => {
+	var query = {_id: id};
+	var update = {
+		name: user.name,
+		email: user.email,
+		major: user.major,
+		size: user.size,
+		resume: user.resume,
+        diet: user.diet,
+        travel:user.travel,
+        school:user.school,
+        
+	}
+	user.findOneAndUpdate(query, update, options, callback);
+}
+
+module.exports.removeUser = (id, callback) => {
+	var query = {_id: id};
+	User.remove(query, callback);
+}
+
+
+module.exports.getUserById = (id, callback) => {
+	User.findById(id, callback);
+}

@@ -6,16 +6,19 @@ let exphbs = require('express-handlebars')
 var expressValidator = require('express-validator');
 let path = require('path');
 let app = express();
+var cors = require('cors')
+app.use(cors())
 
 //db
-mongoose.connect('mongodb://localhost/mango');
 let db = mongoose.connection;
+var promise = mongoose.connect('mongodb://localhost/mango', {
+  useMongoClient: true,
+  /* other options */
+});
 
 //routes
 let routes = require('./routes/index');
 let form = require('./routes/form');
-let adminDashboard = require('./routes/adminDashboard');
-let sponsorDashboard = require('./routes/sponsorDashboard');
 
 //middleware
 app.use(bodyParser.json());
@@ -39,6 +42,16 @@ app.use(expressValidator({
     }
   }));
 
+  // Make our db accessible to our router
+app.use(function(req,res,next){
+  req.db = db;
+  next();
+});
+
+
+
+
+
 //view 
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}))
@@ -50,9 +63,9 @@ app.use(express.static('public/img'));
 
 //routes
 app.use('/', routes);
-app.use('/users', form);
-app.use('/admindashboard', adminDashboard);
-app.use('/sponsordashboard', sponsorDashboard);
+app.use('/', form);
 //port
-app.listen(3000);
-console.log('listening on port 3000');
+var port = process.env.port || 8050;
+
+app.listen(port );
+console.log('Listening on port '+ port);

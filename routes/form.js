@@ -9,19 +9,24 @@ router.get('/form', ((req,res) =>{
 
 // Register User
 router.post('/form', function(req, res){
-    let firstName = req.body.firstName;
-    let lastName = req.body.lastName;
+    let name = req.body.name;
 	let email = req.body.email;
 	let major = req.body.major;
 	let diet = req.body.diet;
-	let gender = req.body.gender;
+	let size = req.body.size;
+	let resume= req.body.resume;
+	let school = req.body.school;
+	let travel = req.body.travel;
+	
+	
 
 	// Validation
-    req.checkBody('firstName', 'First Name is required').notEmpty();
-    req.checkBody('lastName', 'Last Name is required').notEmpty();
+    req.checkBody('name', 'First Name is required').notEmpty();
 	req.checkBody('email', 'Email is required').notEmpty();
 	req.checkBody('email', 'Email is not valid').isEmail();
-
+	req.checkBody('major', 'Major is required').notEmpty();
+	req.checkBody('major', 'Major is required').notEmpty();
+	
 	let errors = req.validationErrors();
 
 	if(errors){
@@ -30,21 +35,21 @@ router.post('/form', function(req, res){
 		});
 	} else {
 		var newUser = new User({
-			firstName: firstName,
-			lastName: lastName,
+			name: name,
 			email:email,
 			major:major,
+			size:size,
+			resume:resume,
 			diet:diet,
-			gender:gender,
+			travel:travel,
+			school:school
 		});
-
 		User.addUser(newUser, function(err, user){
 			if(err) throw err;
 			console.log(user);
 		});
-		
 		res.redirect('/');
-	
+		
 	}
 });
 
