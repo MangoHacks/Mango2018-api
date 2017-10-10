@@ -11,9 +11,25 @@ router.get('/users', (req, res) => {
 	User.getUsers((err, users) => {
 		if(err){
 			throw err;
+        }
+        res.json(users);
+    });
+});
+router.delete('/users/:_id', (req, res) => {
+	var id = req.params._id;
+	User.removeUser(id, (err, user) => {
+		if(err){
+			throw err;
 		}
-		res.json(users);
+		res.json(user);
 	});
 });
-
+router.get('/users/:_id', (req, res) => {
+	User.getUserById(req.params._id, (err, user) => {
+		if(err){
+			throw err;
+		}
+		res.json(user);
+	});
+});
 module.exports = router;
