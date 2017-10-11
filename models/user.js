@@ -45,7 +45,7 @@ module.exports.addUser = ((user, callback) => {
     User.create(user, callback);
 })
 
-module.exports.updateUser = (name, email, options, callback) => {
+module.exports.updateUser = (id, user, options, callback) => {
 	var query = {_id: id};
 	var update = {
 		name: user.name,
@@ -58,7 +58,7 @@ module.exports.updateUser = (name, email, options, callback) => {
         school:user.school,
         
 	}
-	user.findOneAndUpdate(query, update, options, callback);
+	User.findOneAndUpdate(query, update, options, callback);
 }
 
 module.exports.removeUser = (id, callback) => {

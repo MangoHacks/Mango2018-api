@@ -14,7 +14,8 @@ let sponsorSchema = mongoose.Schema({
         default: 'Not Confirmed'
     },
     amount:{
-        type:Number
+        type:Number,
+        default: 0
     }
 });
 
@@ -28,13 +29,15 @@ module.exports.addSponsor = ((sponsor, callback) => {
     Sponsor.create(sponsor, callback);
 })
 
-module.exports.updateSponsor = (name, email, options, callback) => {
+module.exports.updateSponsor = (id,sponsor, options, callback) => {
 	var query = {_id: id};
 	var update = {
-		name: user.name,
-		email: user.email,
+		// name: sponsor.name,
+        // email: sponsor.email,
+        // amount: sponsor.amount,
+        confirmed: sponsor.confirmed
 	}
-	user.findOneAndUpdate(query, update, options, callback);
+	Sponsor.findOneAndUpdate(query, update, options, callback);
 }
 
 module.exports.removeSponsor = (id, callback) => {

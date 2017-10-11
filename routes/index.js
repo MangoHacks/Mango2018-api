@@ -58,10 +58,21 @@ router.get('/sponsors/:_id', (req, res) => {
 		if(err){
 			throw err;
 		}
-		res.json(user);
+		res.json(sponsor);
 	});
 });
 
+
+router.put('/sponsors/:_id', (req, res) => {
+	var id = req.params._id;
+	var sponsor = req.body;
+	Sponsor.updateSponsor(id, sponsor, {}, (err, sponsor) => {
+		if(err){
+			throw err;
+		}
+		res.json(sponsor);
+	});
+});
 
 
 
