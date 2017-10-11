@@ -3,8 +3,8 @@ P-DIDDY
 
 #Endpoints
 
-/users  Get all users
-/form signup form for users
+## /users  Get all users
+## /form signup form for users
 
-/sponsors Get all sponsors
-/sponsorform form for signing up sponsors
+## /sponsors Get all sponsors
+## /sponsorform form for signing up sponsors
