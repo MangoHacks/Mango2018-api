@@ -2,6 +2,8 @@ let express = require('express');
 let router = express.Router();
 
 let User = require('../models/user.js')
+let Sponsor = require('../models/sponsor.js')
+
 
 router.get ('/', ((req,res) => {
     res.render('index');
@@ -32,4 +34,35 @@ router.get('/users/:_id', (req, res) => {
 		res.json(user);
 	});
 });
+
+
+router.get('/sponsors', (req, res) => {
+	Sponsor.getSponsors((err, sponsors) => {
+		if(err){
+			throw err;
+        }
+        res.json(sponsors);
+    });
+});
+router.delete('/sponsors/:_id', (req, res) => {
+	var id = req.params._id;
+	Sponsor.removeSponsor(id, (err, sponsor) => {
+		if(err){
+			throw err;
+		}
+		res.json(sponsor);
+	});
+});
+router.get('/sponsors/:_id', (req, res) => {
+	Sponsor.getSponsorById(req.params._id, (err, sponsor) => {
+		if(err){
+			throw err;
+		}
+		res.json(user);
+	});
+});
+
+
+
+
 module.exports = router;

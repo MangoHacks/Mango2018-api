@@ -19,6 +19,8 @@ var promise = mongoose.connect('mongodb://localhost/mango', {
 //routes
 let routes = require('./routes/index');
 let form = require('./routes/form');
+let sponsor = require('./routes/sponsor');
+
 
 //middleware
 app.use(bodyParser.json());
@@ -64,6 +66,8 @@ app.use(express.static('public/img'));
 //routes
 app.use('/', routes);
 app.use('/', form);
+app.use('/', sponsor);
+
 //port
 var port = process.env.port || 8050;
 
