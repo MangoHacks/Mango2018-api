@@ -16,10 +16,7 @@ router.post('/form', function(req, res){
 	let size = req.body.size;
 	let resume= req.body.resume;
 	let school = req.body.school;
-	let travel = req.body.travel;
 	
-	
-
 	// Validation
     req.checkBody('name', 'First Name is required').notEmpty();
 	req.checkBody('email', 'Email is required').notEmpty();
@@ -41,7 +38,6 @@ router.post('/form', function(req, res){
 			size:size,
 			resume:resume,
 			diet:diet,
-			travel:travel,
 			school:school
 		});
 		User.addUser(newUser, function(err, user){

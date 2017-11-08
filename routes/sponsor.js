@@ -7,12 +7,13 @@ router.get('/sponsorform', ((req,res) =>{
     res.render('sponsorform')
 }));
 
-// Register User
+// Register Sponsor
 router.post('/sponsor', function(req, res){
     let name = req.body.name;
 	let email = req.body.email;
 	let amount = req.body.amount;
 	let confirmed = req.body.confirmed;
+	let contacted = req.body.contacted;
 	
 	// Validation
     req.checkBody('name', 'First Name is required').notEmpty();
@@ -31,7 +32,8 @@ router.post('/sponsor', function(req, res){
 			name: name,
 			email:email,
 			amount:amount,
-			confirmed: confirmed
+			confirmed: confirmed,
+			contacted: contacted
 		});
 		Sponsor.addSponsor(newSponsor, function(err, sponsor){
 			if(err) throw err;

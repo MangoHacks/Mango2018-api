@@ -16,6 +16,10 @@ let sponsorSchema = mongoose.Schema({
     amount:{
         type:Number,
         default: 0
+    },
+    contacted:{
+        type:String,
+        default:'Not Contacted'
     }
 });
 
@@ -32,10 +36,11 @@ module.exports.addSponsor = ((sponsor, callback) => {
 module.exports.updateSponsor = (id,sponsor, options, callback) => {
 	var query = {_id: id};
 	var update = {
-		// name: sponsor.name,
-        // email: sponsor.email,
-        // amount: sponsor.amount,
-        confirmed: sponsor.confirmed
+		name: sponsor.name,
+        email: sponsor.email,
+        amount: sponsor.amount,
+        confirmed: sponsor.confirmed,
+        contacted: sponsor.contacted
 	}
 	Sponsor.findOneAndUpdate(query, update, options, callback);
 }
