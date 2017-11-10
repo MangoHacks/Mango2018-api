@@ -17,6 +17,10 @@ let userSchema = mongoose.Schema({
         type:String,
         require:true
     },
+    year:{
+        type:String,
+        require:true
+    },
     diet:{
         type:String,
         default:''
@@ -32,20 +36,20 @@ let userSchema = mongoose.Schema({
     mlh:{
         type:String,
         require:true
+    },
+    gender:{
+        type:String,
+        require:true
+    },
+    github:{
+        type:String,
+        require:true
+    },
+    firsttime:{
+        type:String,
+        require:true
     }
 });
-
-
-// SIGNUP 
-// name
-// email
-// gender
-// school
-// year
-// resume
-// github
-// first time?
-// MLH CODE OF CONDUCT
 
 let User = module.exports = mongoose.model('User', userSchema);
 
@@ -67,8 +71,11 @@ module.exports.updateUser = (id, user, options, callback) => {
 		resume: user.resume,
         diet: user.diet,
         school:user.school,
-     
-        
+        gender:user.gender,
+        year:user.year,
+        github:user.github,
+        firsttime:user.firsttime,
+        mlh:user.mlh
 	}
 	User.findOneAndUpdate(query, update, options, callback);
 }
