@@ -74,6 +74,4 @@ router.put('/sponsors/:_id', (req, res) => {
 	});
 });
 
-
-
 module.exports = router;
