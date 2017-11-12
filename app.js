@@ -64,7 +64,7 @@ app.use('/', form);
 app.use('/', sponsor);
 
 //port
-var port = process.env.port || 8050;
+var port = 8050;
 
 app.listen(port );
 console.log('Listening on port '+ port);
