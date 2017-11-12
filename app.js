@@ -21,7 +21,6 @@ let routes = require('./routes/index');
 let form = require('./routes/form');
 let sponsor = require('./routes/sponsor');
 
-
 //middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -49,10 +48,6 @@ app.use(function(req,res,next){
   req.db = db;
   next();
 });
-
-
-
-
 
 //view 
 app.set('views', path.join(__dirname, 'views'));

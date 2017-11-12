@@ -26,7 +26,7 @@ let userSchema = mongoose.Schema({
         default:''
     },
     resume:{
-        type:String,
+        type:Object,
         default:''
     },
     size:{

@@ -1,7 +1,8 @@
 let express = require('express');
 let router = express.Router();
 let multer = require('multer');
-let upload = multer({dest:'./resumes/:_id'});
+let upload = multer({dest:'resumes'});
+
 // 
 
 let User = require('../models/user');
@@ -11,7 +12,7 @@ router.get('/form', ((req,res) =>{
 }));
 
 // Register User
-router.post('/form', upload.any(),function(req, res){
+router.post('/form', upload.single('resume'),function(req, res){
     let name = req.body.name;
     let email = req.body.email;
     let major = req.body.major;
@@ -62,8 +63,6 @@ router.post('/form', upload.any(),function(req, res){
         User.addUser(newUser, function(err, user){
             if(err) throw err;
             console.log(user);
-console.log(req.body);
-console.log(req.file);
         });
         res.redirect('/');  
     }
