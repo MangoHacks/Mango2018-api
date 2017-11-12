@@ -20,6 +20,8 @@ var promise = mongoose.connect('mongodb://localhost/mango', {
 let routes = require('./routes/index');
 let form = require('./routes/form');
 let sponsor = require('./routes/sponsor');
+let download = require('./routes/download');
+let dlresume = require('./routes/dlresume');
 
 //middleware
 app.use(bodyParser.json());
@@ -31,7 +33,7 @@ app.use(expressValidator({
         var namespace = param.split('.')
         , root    = namespace.shift()
         , formParam = root;
-  
+
       while(namespace.length) {
         formParam += '[' + namespace.shift() + ']';
       }
@@ -49,19 +51,21 @@ app.use(function(req,res,next){
   next();
 });
 
-//view 
+//view
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}))
 app.set('view engine', 'handlebars')
 
-//static 
+//static
 app.use(express.static(path.join(__dirname,'public')));
-app.use(express.static('public/img')); 
+app.use(express.static('public/img'));
 
 //routes
 app.use('/', routes);
 app.use('/', form);
 app.use('/', sponsor);
+app.use('/', download);
+app.use('/', dlresume);
 
 //port
 var port = 8050;
