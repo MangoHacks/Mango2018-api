@@ -3,8 +3,6 @@ let router = express.Router();
 let multer = require('multer');
 let upload = multer({dest:'resumes'});
 
-// 
-
 let User = require('../models/user');
 
 router.get('/form', ((req,res) =>{
@@ -24,11 +22,8 @@ router.post('/form', upload.single('resume'),function(req, res){
     let size = req.body.size;
     let github = req.body.github;
     let resume= req.file;
+    let mlh = req.body.mlh;
 
-//     let mlh = req.body.mlh;
-
-
-    
     // Validation
 //     req.checkBody('name', 'First Name is required').notEmpty();
 //     req.checkBody('email', 'Email is required').notEmpty();
@@ -60,10 +55,7 @@ router.post('/form', upload.single('resume'),function(req, res){
             github:github,
             resume:resume,
             diet:diet,
-
-//             mlh:mlh,
-
-
+            mlh:mlh
         });
         User.addUser(newUser, function(err, user){
             if(err) throw err;
