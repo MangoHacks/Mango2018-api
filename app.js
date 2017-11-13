@@ -68,7 +68,7 @@ app.use('/', download);
 app.use('/', dlresume);
 
 //port
-var port = 8050;
+var port = process.env.port || 8050;
 
 app.listen(port );
 console.log('Listening on port '+ port);
