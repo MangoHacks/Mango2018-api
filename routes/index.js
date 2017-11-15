@@ -35,7 +35,16 @@ router.get('/users/:_id', (req, res) => {
 	});
 });
 
-
+router.put('/users/:_id', (req, res) => {
+	var id = req.params._id;
+	var user= req.body;
+	User.updateUser(id, user, {}, (err, user) => {
+		if(err){
+			throw err;
+		}
+		res.json(user);
+	});
+});
 router.get('/sponsors', (req, res) => {
 	Sponsor.getSponsors((err, sponsors) => {
 		if(err){

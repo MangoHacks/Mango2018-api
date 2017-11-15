@@ -23,6 +23,7 @@ router.post('/form', upload.single('resume'),function(req, res){
     let github = req.body.github;
     let resume= req.file;
     let mlh = req.body.mlh;
+    let checkin = req.body.checkin;
 
     // Validation
 //     req.checkBody('name', 'First Name is required').notEmpty();
@@ -55,7 +56,8 @@ router.post('/form', upload.single('resume'),function(req, res){
             github:github,
             resume:resume,
             diet:diet,
-            mlh:mlh
+            mlh:mlh,
+            checkin:checkin
         });
         User.addUser(newUser, function(err, user){
             if(err) throw err;

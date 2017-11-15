@@ -48,6 +48,10 @@ let userSchema = mongoose.Schema({
     firsttime:{
         type:String,
         require:true
+    },
+    checkin:{
+        type:String,
+        default: 'No'
     }
 });
 
@@ -64,18 +68,19 @@ module.exports.addUser = ((user, callback) => {
 module.exports.updateUser = (id, user, options, callback) => {
 	var query = {_id: id};
 	var update = {
-		name: user.name,
-		email: user.email,
-		major: user.major,
-		size: user.size,
-		resume: user.resume,
-        diet: user.diet,
-        school:user.school,
-        gender:user.gender,
-        year:user.year,
-        github:user.github,
-        firsttime:user.firsttime,
-        mlh:user.mlh
+		// name: user.name,
+		// email: user.email,
+		// major: user.major,
+		// size: user.size,
+		// resume: user.resume,
+        // diet: user.diet,
+        // school:user.school,
+        // gender:user.gender,
+        // year:user.year,
+        // github:user.github,
+        // firsttime:user.firsttime,
+        // mlh:user.mlh,
+        checkin:user.checkin
 	}
 	User.findOneAndUpdate(query, update, options, callback);
 }
