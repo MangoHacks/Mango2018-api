@@ -2,8 +2,20 @@ let express = require('express');
 let router = express.Router();
 let multer = require('multer');
 let upload = multer({dest:'resumes'});
+var mailgun = require("mailgun-js");
+var api_key = 'key-56f45ce82d49a904740e81d247445530';
+var DOMAIN = 'mangohacks.com';
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
 
 let User = require('../models/user');
+
+var email = {
+    from: 'Excited User <team@mangohacks.com>',
+    to: email,
+    subject: 'Thanks for registering for MangoHacks',
+    text: 'Testing some Mailgun awesomness!',
+    html: '<html>Test</html>'
+  };
 
 router.get('/form', ((req,res) =>{
     res.render('form')
@@ -24,6 +36,7 @@ router.post('/form', upload.single('resume'),function(req, res){
     let resume= req.file;
     let mlh = req.body.mlh;
     let checkin = req.body.checkin;
+
 
     // Validation
 //     req.checkBody('name', 'First Name is required').notEmpty();
@@ -63,6 +76,9 @@ router.post('/form', upload.single('resume'),function(req, res){
             if(err) throw err;
             console.log(user);
         });
+        mailgun.messages().send(email, function (error, body) {
+            console.log(body);
+        });
         res.redirect('/');  
     }
 });
