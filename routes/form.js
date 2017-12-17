@@ -32,10 +32,10 @@ router.post('/form', upload.single('resume'),function(req, res){
     let checkin = req.body.checkin;
     var data = {
         from: 'Team MangoHacks <team@mangohacks.com>',
-        to: email,
-        subject: 'Thanks for registering for MangoHacks',
-        text: 'Testing some Mailgun awesomness!',
-        html: '<html>Test</html>'
+        to: email.toString(),
+        subject: 'Slam Dunk! You are now registered for MangoHacks!',
+        text: 'Thanks for registering for MangoHacks',
+        html: '<html> </html>'
       };
 
 
