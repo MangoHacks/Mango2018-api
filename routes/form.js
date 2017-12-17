@@ -3,7 +3,7 @@ let router = express.Router();
 let multer = require('multer');
 let upload = multer({dest:'resumes'});
 var mailgun = require("mailgun-js");
-var api_key = 'key-52c085f0c640a6e4d9d0c73b3929d3e4';
+var api_key = '';
 var DOMAIN = 'hi.mangohacks.com';
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
 
