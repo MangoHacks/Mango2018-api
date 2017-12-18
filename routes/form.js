@@ -2,9 +2,10 @@ let express = require('express');
 let router = express.Router();
 let multer = require('multer');
 let upload = multer({dest:'resumes'});
+let config = require('../routes/config');
 var mailgun = require("mailgun-js");
-var api_key = 'key-52c085f0c640a6e4d9d0c73b3929d3e4';
-var DOMAIN = 'hi.mangohacks.com';
+var api_key = config.api_key();
+var DOMAIN = config.domain();
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
 
 let User = require('../models/user');
@@ -118,7 +119,7 @@ router.post('/form', upload.single('resume'),function(req, res){
             if(error) throw error;
             console.log(body);
         });
-        res.redirect('/');  
+        res.redirect('https://mangohacks.com/');  
     }
 });
 
