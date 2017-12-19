@@ -7,6 +7,8 @@ var mailgun = require("mailgun-js");
 var api_key = config.api_key();
 var DOMAIN = config.domain();
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+const path = require('path');
+var filepath = path.join(__dirname, 'mango.jpg');
 
 let User = require('../models/user');
 
@@ -36,12 +38,13 @@ router.post('/form', upload.single('resume'),function(req, res){
         to: email.toString(),
         subject: 'Slam Dunk! You are now registered for MangoHacks!',
         text: 'Thanks for registering for MangoHacks',
+          
       html: `<html><div class="email-bg" style="background: #6D1BBD;padding: 30px 0px 30px 0px;color: white;">
       <div class="pre-head" style="max-width: 600px;margin: 0 auto;padding: 10px 20px 10px 20px;background: #6D1BBD;font-size: 10px;color: white;">
-  
+        
       </div>
       <div class="header" style="max-width: 480px;margin: 0 auto; text-align: center">
-          <img src="{{url('/')}}/img/mangos/innovate-mango.svg" alt="MRE" style="max-width: 50%; margin: 0 auto;">
+      <img src="cid:mango.jpg" style="max-width: 50%; margin: 0 auto;">
       </div>
       <div class="email-container" style="max-width: 600px;margin: 0 auto;padding: 0px 20px 20px 20px;background: #6D1BBD;">
           <p class="greeting" style="color: white;font-size: 36px;font-weight: bold;">You registered for MangoHacks!</p>
@@ -51,7 +54,7 @@ router.post('/form', upload.single('resume'),function(req, res){
               We're super excited to have you join us in <strong>Miami, FL</strong> <strong>Feb 2nd - 4th</strong> for a sweet weekend.
           </p>
           <p>
-              We will be sending a bus to North Florida, stopping at FSU, UF, and UCF. We'll release details about reserving your a spot on social media 
+              We will be sending a bus to North Florida, stopping at FSU, UF, and UCF. We'll release details about reserving you a spot on social media 
               and through email in the coming days.
           </p>
         
@@ -73,7 +76,10 @@ router.post('/form', upload.single('resume'),function(req, res){
               </p>
           </div>
       </div>
-  </div></html>`
+  </div></html>`,
+  inline: filepath
+
+
       };
 
 
