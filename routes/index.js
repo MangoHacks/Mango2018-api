@@ -17,15 +17,15 @@ router.get('/users', (req, res) => {
         res.json(users);
     });
 });
-router.delete('/users/:_id', (req, res) => {
-	var id = req.params._id;
-	User.removeUser(id, (err, user) => {
-		if(err){
-			throw err;
-		}
-		res.json(user);
-	});
-});
+// router.delete('/users/:_id', (req, res) => {
+// 	var id = req.params._id;
+// 	User.removeUser(id, (err, user) => {
+// 		if(err){
+// 			throw err;
+// 		}
+// 		res.json(user);
+// 	});
+// });
 router.get('/users/:_id', (req, res) => {
 	User.getUserById(req.params._id, (err, user) => {
 		if(err){
@@ -53,15 +53,15 @@ router.get('/sponsors', (req, res) => {
         res.json(sponsors);
     });
 });
-router.delete('/sponsors/:_id', (req, res) => {
-	var id = req.params._id;
-	Sponsor.removeSponsor(id, (err, sponsor) => {
-		if(err){
-			throw err;
-		}
-		res.json(sponsor);
-	});
-});
+// router.delete('/sponsors/:_id', (req, res) => {
+// 	var id = req.params._id;
+// 	Sponsor.removeSponsor(id, (err, sponsor) => {
+// 		if(err){
+// 			throw err;
+// 		}
+// 		res.json(sponsor);
+// 	});
+// });
 router.get('/sponsors/:_id', (req, res) => {
 	Sponsor.getSponsorById(req.params._id, (err, sponsor) => {
 		if(err){
